@@ -1,0 +1,207 @@
+{
+  "project_info": {
+    "project_number": "606211238027",
+    "firebase_url": "https://iotcore-208310.firebaseio.com",
+    "project_id": "iotcore-208310",
+    "storage_bucket": "iotcore-208310.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:606211238027:android:03501f4c2fe5d95ff00c8e",
+        "android_client_info": {
+          "package_name": "com.pmt.management"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "606211238027-dl2slbknuu5018j777n9gotig8vkje2h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pmt.management",
+            "certificate_hash": "7c09f1debc54f4d399d81c38186e9d369e261269"
+          }
+        },
+        {
+          "client_id": "606211238027-1qletoholvgdslj423onqsptd9nb4q65.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdBgaSviQ9w02HxMUVVX4QOYsbbdCAbIU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "606211238027-1qletoholvgdslj423onqsptd9nb4q65.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "606211238027-k7sfclpnf35jr8l7r17ihhl7l2jona0i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.tuanpm.carmoji"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:606211238027:android:eac0f6fe4b6378f7f00c8e",
+        "android_client_info": {
+          "package_name": "com.tuanpm.carmoji"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "606211238027-2tm44fr52h2ghuatm5uctcmoploqk5v2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tuanpm.carmoji",
+            "certificate_hash": "cdc1a20957d95ba4f27abef09ecd21f6b4377abb"
+          }
+        },
+        {
+          "client_id": "606211238027-djoimvojketf34t1jqn88ou0notkaklk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tuanpm.carmoji",
+            "certificate_hash": "cd3e4719e7e2bf9d32c8ef072e346bbdc6b674e9"
+          }
+        },
+        {
+          "client_id": "606211238027-hfdimn5nvqjijioidrrle3con90re5l4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tuanpm.carmoji",
+            "certificate_hash": "7c3f1cde3eb176cdcd2ed204e30bdcd2790a30c4"
+          }
+        },
+        {
+          "client_id": "606211238027-mbtd1ftu64fv2i90eselic2qo6pqvqh6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tuanpm.carmoji",
+            "certificate_hash": "b288392b9a80b9128964d3bed1f46847b9281477"
+          }
+        },
+        {
+          "client_id": "606211238027-na5jnk18sontju063s4teh0nls9j52f7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tuanpm.carmoji",
+            "certificate_hash": "7c09f1debc54f4d399d81c38186e9d369e261269"
+          }
+        },
+        {
+          "client_id": "606211238027-1qletoholvgdslj423onqsptd9nb4q65.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdBgaSviQ9w02HxMUVVX4QOYsbbdCAbIU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "606211238027-1qletoholvgdslj423onqsptd9nb4q65.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "606211238027-k7sfclpnf35jr8l7r17ihhl7l2jona0i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.tuanpm.carmoji"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:606211238027:android:bb47766565a1fa0af00c8e",
+        "android_client_info": {
+          "package_name": "vn.pas.pas_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "606211238027-1hb58mje8f88c395otv2htb2t57m1auc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "vn.pas.pas_app",
+            "certificate_hash": "7c09f1debc54f4d399d81c38186e9d369e261269"
+          }
+        },
+        {
+          "client_id": "606211238027-bpmtteqk286o9vh35i6n98ge21g0294g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "vn.pas.pas_app",
+            "certificate_hash": "b288392b9a80b9128964d3bed1f46847b9281477"
+          }
+        },
+        {
+          "client_id": "606211238027-c31beua6mnsp8pfionpbnkm7dk9gfjmf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "vn.pas.pas_app",
+            "certificate_hash": "cd3e4719e7e2bf9d32c8ef072e346bbdc6b674e9"
+          }
+        },
+        {
+          "client_id": "606211238027-ilp2nfmvglrl4r5ugnvgf852nim126sh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "vn.pas.pas_app",
+            "certificate_hash": "7c3f1cde3eb176cdcd2ed204e30bdcd2790a30c4"
+          }
+        },
+        {
+          "client_id": "606211238027-tocih0h6boaud1aog6gvnbg6dj7bou3s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "vn.pas.pas_app",
+            "certificate_hash": "cdc1a20957d95ba4f27abef09ecd21f6b4377abb"
+          }
+        },
+        {
+          "client_id": "606211238027-1qletoholvgdslj423onqsptd9nb4q65.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdBgaSviQ9w02HxMUVVX4QOYsbbdCAbIU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "606211238027-1qletoholvgdslj423onqsptd9nb4q65.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "606211238027-k7sfclpnf35jr8l7r17ihhl7l2jona0i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.tuanpm.carmoji"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
