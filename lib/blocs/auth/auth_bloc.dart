@@ -2,6 +2,8 @@ import 'dart:async';
 // import 'dart:js';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get_it/get_it.dart';
+import 'package:management/services/localstorage_service.dart';
 import 'package:meta/meta.dart';
 
 import 'user_repository.dart';
@@ -44,6 +46,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   Stream<AuthState> _mapLoggedInToState() async* {
+    GetIt.I<LocalStorageService>().hasLoggedIn= true;
     yield Authenticated(await _userRepository?.getUser());
   }
 

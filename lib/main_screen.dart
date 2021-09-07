@@ -15,6 +15,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:web_socket_channel/io.dart';
 
+import 'services/iot_core/iot_core.dart';
+
 class MainScreen extends StatefulWidget {
   final int? pageIndex;
   MainScreen({Key? key,this.pageIndex}) : super(key: key);
@@ -115,6 +117,20 @@ class _MainScreenState extends State<MainScreen> {
 
 
     });
+    if(GetIt.I<LocalStorageService>().hasLoggedIn){
+      GetIt.I<IotCore>().getAuthService().getService().then((channel) {
+      channel.stream.listen((event) async{ 
+        print(event.toString());
+        if(event.toString()!="ok"){
+          GetIt.I<LocalStorageService>().sToken = event;
+        }
+        await Future.delayed(Duration(hours: 1)).whenComplete(() {
+          channel.sink.add(GetIt.I<LocalStorageService>().sToken);
+        });
+      });
+    });
+    }
+
 
     super.initState();
   }

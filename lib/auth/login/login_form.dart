@@ -79,18 +79,18 @@ class _LoginFormState extends State<LoginForm> {
           BlocProvider.of<AuthBloc>(context).add(LoggedIn());
           GetIt.I<NavigationService>().navTo('/', context: context, clearStack: true);
 
-          GetIt.I<IotCore>().getAuthService().
-          getService().then((channel) {
-            channel.stream.listen((event) async{ 
-              print(event.toString());
-              if(event.toString()!="ok"){
-                GetIt.I<LocalStorageService>().sToken = event;
-              }
-              await Future.delayed(Duration(seconds: 5)).whenComplete(() {
-                channel.sink.add(GetIt.I<LocalStorageService>().sToken);
-              });
-            });
-          });
+          // GetIt.I<IotCore>().getAuthService().
+          // getService().then((channel) {
+          //   channel.stream.listen((event) async{ 
+          //     print(event.toString());
+          //     if(event.toString()!="ok"){
+          //       GetIt.I<LocalStorageService>().sToken = event;
+          //     }
+          //     await Future.delayed(Duration(seconds: 5)).whenComplete(() {
+          //       channel.sink.add(GetIt.I<LocalStorageService>().sToken);
+          //     });
+          //   });
+          // });
         }
       },
       child: BlocBuilder<LoginBloc, LoginState>(
