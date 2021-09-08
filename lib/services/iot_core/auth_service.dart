@@ -24,6 +24,7 @@ class AuthService {
       if(_token == ""){
         _token = await GetIt.I<UserRepository>().getUserGoogleToken();
       }
+      await refreshToken();
       _channel = IOWebSocketChannel.connect(Uri.parse(SERVER_WS_URL+CHANNEL_AUTH_URL),headers: {"id_token":_token});
     }
     return _channel!;
@@ -34,6 +35,10 @@ class AuthService {
       _token = await GetIt.I<UserRepository>().getUserGoogleToken();
     }
     return _token;
+  }
+
+  Future<void> refreshToken() async{
+      _token = await GetIt.I<UserRepository>().getUserGoogleToken();
   }
 
   static Future<void> clearService() async{

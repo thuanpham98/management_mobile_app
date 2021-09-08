@@ -39,7 +39,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class ProfileScreenState extends State<ProfileScreen> with WidgetsBindingObserver{
-  bool? _isDarkMode;
+  bool _isDarkMode = GetIt.I<LocalStorageService>().darkMode;
 
   @override
   void initState(){
@@ -64,21 +64,18 @@ class ProfileScreenState extends State<ProfileScreen> with WidgetsBindingObserve
     WidgetsBinding.instance?.removeObserver(this);
   }
 
-  Widget _buildAvatar(BuildContext context) {
+  Widget _buildUserAvatar(BuildContext context) {
     return Container(
       height: 80,
       child: CircleAvatar(
         radius: 40.0,
-        child: Container(color: Colors.amberAccent,),
-        // backgroundImage:
-        //     (widget.userEmail == "" || widget.userPhoto == "")
-        //         ? AssetImage('assets/user.png')
-        //         : NetworkImage(widget.userPhoto),
+        // child: Container(color: Colors.amberAccent,),
+        backgroundImage: NetworkImage(widget.userPhoto!)
       ),
     );
   }
 
-  Widget _buildLoginInfo(BuildContext context) {
+  Widget _buildUserInfo(BuildContext context) {
     return Container(
       alignment: Alignment.bottomCenter,
       height: 80,
@@ -88,11 +85,11 @@ class ProfileScreenState extends State<ProfileScreen> with WidgetsBindingObserve
           children: [
             Text(
               widget.userName!,
-              style: Theme.of(context).textTheme.headline5?.copyWith(fontWeight: FontWeight.bold,color: Colors.white),
+              style: Theme.of(context).textTheme.headline5?.copyWith(fontWeight: FontWeight.bold,color: (_isDarkMode)?Colors.white:Colors.black),
             ),
             Text(
               widget.userEmail!,
-              style: Theme.of(context).textTheme.subtitle1?.copyWith(fontWeight: FontWeight.bold,color: Colors.white)
+              style: Theme.of(context).textTheme.subtitle1?.copyWith(fontWeight: FontWeight.bold,color: (_isDarkMode)?Colors.white:Colors.black)
             ),
           ],
         ),
@@ -109,10 +106,7 @@ class ProfileScreenState extends State<ProfileScreen> with WidgetsBindingObserve
         automaticallyImplyLeading: false,
         flexibleSpace: Container(
           decoration: new BoxDecoration(
-            color: !(_isDarkMode!)
-                ? Color.fromRGBO(28, 28, 30, 1)
-                : Colors.transparent,
-            gradient: AppBackground.gradientBackground(Colors.green),
+            color: Theme.of(context).backgroundColor,
           ),
           padding:
               const EdgeInsets.only(top: 30, left: 15, right: 15, bottom: 40),
@@ -122,9 +116,9 @@ class ProfileScreenState extends State<ProfileScreen> with WidgetsBindingObserve
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    _buildAvatar(context),
+                    _buildUserAvatar(context),
                     SizedBox(width: 8),
-                    _buildLoginInfo(context),
+                    _buildUserInfo(context),
                   ]),
             ),
           ),

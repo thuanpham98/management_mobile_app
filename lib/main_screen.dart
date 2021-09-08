@@ -17,6 +17,10 @@ import 'package:web_socket_channel/io.dart';
 
 import 'services/iot_core/iot_core.dart';
 
+import 'home/home_screen.dart';
+
+import 'dart:async';
+
 class MainScreen extends StatefulWidget {
   final int? pageIndex;
   MainScreen({Key? key,this.pageIndex}) : super(key: key);
@@ -27,19 +31,15 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
 
-  String? _userName;
-  String? _userEmail;
-  String? _photoURL;
-  
-  int _selectedIndex = 0 ;
+  int _selectedIndex = 1;
 
   List<GlobalKey<NavigatorState>> _navigatorKeys = [
     GlobalKey<NavigatorState>(),
     GlobalKey<NavigatorState>(),
     GlobalKey<NavigatorState>(),
-    GlobalKey<NavigatorState>(),
-    GlobalKey<NavigatorState>(),
   ];
+
+  bool _holdTimer = false;
 
   Widget _buildIcon(BuildContext context, String asset, int index, {double? height}) {
 
@@ -64,28 +64,18 @@ class _MainScreenState extends State<MainScreen> {
       items: [
         BottomNavigationBarItem(
           backgroundColor: Theme.of(context).backgroundColor,
-          icon: Icon(Icons.map_sharp),
-          label: 'Monitoring'.i18n,
+          icon: Icon(Icons.schedule_outlined),
+          label: 'Schedule'.i18n,
         ),
         BottomNavigationBarItem(
           backgroundColor: Theme.of(context).backgroundColor,
-          icon: _buildIcon(context, AssetIcons.Farm, 1),
-          label: 'Location'.i18n,
+          icon: Icon(Icons.home_outlined),
+          label: 'Home'.i18n,
         ),
         BottomNavigationBarItem(
           backgroundColor: Theme.of(context).backgroundColor,
-          icon: _buildIcon(context, AssetIcons.Pump, 2),
-          label: 'Station'.i18n,
-        ),
-        BottomNavigationBarItem(
-          backgroundColor: Theme.of(context).backgroundColor,
-          icon: _buildIcon(context, AssetIcons.Automation, 3),
-          label: 'Automation'.i18n,
-        ),
-        BottomNavigationBarItem(
-          backgroundColor: Theme.of(context).backgroundColor,
-          icon: Icon(Icons.notifications),
-          label: 'Notification'.i18n,
+          icon: Icon(Icons.settings_accessibility_outlined),
+          label: 'Accessibility'.i18n,
         )
       ],
       onTap: (idx) {
@@ -96,40 +86,40 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 
+  Future <Map<String,String>> _getUserInfor() async{
+    Map<String,String> ret = {};
+
+    ret['userName']=  (await GetIt.I<UserRepository>().getUserName())??"";
+    
+    ret['userEmail'] = (await GetIt.I<UserRepository>().getUser()) ?? "" ;
+
+    ret['userPhoto']= (await GetIt.I<UserRepository>().getUserAvatar()) ?? "" ;
+
+    return await Future.value(ret);
+  }
+
   @override
   void initState() {
     _selectedIndex = widget.pageIndex??_selectedIndex;
 
-    setState(() {
-      GetIt.I<UserRepository>().getUserName().then((value) {
-        _userName=value??"";
-
-      });
-      GetIt.I<UserRepository>().getUser().then((value) {
-        _userEmail=value??"";
-
-      });
-
-      GetIt.I<UserRepository>().getUserAvatar().then((value) {
-        _photoURL=value??"";
-
-      });
-
-
-    });
-    if(GetIt.I<LocalStorageService>().hasLoggedIn){
-      GetIt.I<IotCore>().getAuthService().getService().then((channel) {
-      channel.stream.listen((event) async{ 
-        print(event.toString());
-        if(event.toString()!="ok"){
-          GetIt.I<LocalStorageService>().sToken = event;
-        }
-        await Future.delayed(Duration(hours: 1)).whenComplete(() {
-          channel.sink.add(GetIt.I<LocalStorageService>().sToken);
+    new Timer.periodic(Duration(minutes: 30), (timer) { 
+      if(GetIt.I<LocalStorageService>().hasLoggedIn){
+        // GetIt.I<IotCore>().getAuthService().refreshToken();
+        GetIt.I<IotCore>().getAuthService().getService().then((channel) {
+          channel.stream.listen((event) async{ 
+            print(event.toString());
+            if(event.toString()!="ok"){
+              GetIt.I<LocalStorageService>().sToken = event;
+            }
+            await Future.delayed(Duration(hours: 1)).whenComplete(() {
+              channel.sink.add(GetIt.I<LocalStorageService>().sToken);
+            });
+          });
         });
-      });
+      }
     });
-    }
+
+
 
 
     super.initState();
@@ -139,10 +129,6 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     NavigationService.appContext = context; //FIXME: change that
     return Scaffold(
-        drawer: Drawer(
-          child: ProfileScreen(userName: _userName,userEmail: _userEmail,userPhoto: _photoURL),
-        ),
-
         backgroundColor: Theme.of(context).backgroundColor,
         bottomNavigationBar: _renderBottomBar(),
         body: AppTabBar(
@@ -150,10 +136,15 @@ class _MainScreenState extends State<MainScreen> {
           navigatorKeys: _navigatorKeys,
           childrens: <Widget>[
             Container(),
-            Container(),
-            Container(),
-            Container(),
-            Container(),
+            HomeScreen(),
+            FutureBuilder<Map<String,String>>(
+              future: _getUserInfor(),
+              builder: (BuildContext context, AsyncSnapshot snapshot){
+                if(snapshot.connectionState==ConnectionState.done){
+                  return ProfileScreen(userName: snapshot.data["userName"],userEmail: snapshot.data["userEmail"],userPhoto: snapshot.data["userPhoto"]);
+                }return Container(child: LinearProgressIndicator(),);
+              }
+            ),
           ],
         ),
       );
